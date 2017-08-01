@@ -1,6 +1,8 @@
 
 ## Deploy instructions.
 
+Prerequisites: docker, pykafka, net-tools (for netstat). 
+Resulting Kafka will be version 0.11.0.0 , scala 2.11 (considered stable at the time of deploy)
 
 Start the zookeeper container, give it a name, bind the container port 2181 to the host OS port so that we can access that port from the our host OS if needed:
 ```
