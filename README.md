@@ -15,7 +15,7 @@ docker build -t kafka_11 .
 ```
 Start the Kafka container from the freshly built image: 
 ```
-docker run -d --name kafka --net=host -p 9092:9092 -e KAFKA_DELETE_TOPIC_ENABLE=true kafka_11
+docker run -d --name kafka --net=host -e KAFKA_ADVERTISED_HOST_NAME=IP -e KAFKA_DELETE_TOPIC_ENABLE=true -e ZOOKEEPER_IP=IP kafka_11  
 ```
 
 Check the Zookeeper and Kafka lister on their ports on the docker host :
