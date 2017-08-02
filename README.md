@@ -11,7 +11,7 @@ docker run -d -p 2181:2181 --net=host --name zookeeper jplock/zookeeper
 Git clone the docker-kafka project locally onto the server. 
 Build  the Kafka Docker image:
 ```
-docker built -t kafka_11 .
+docker build -t kafka_11 .
 ```
 Start the Kafka container from the freshly built image: 
 ```
