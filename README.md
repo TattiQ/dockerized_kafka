@@ -1,6 +1,7 @@
 ## Deploy instructions.
 
 Prerequisites: yum update -y and disabled firewalld
+
 Resulting Kafka will be version 0.11.0.0 , scala 2.11 (considered stable at the time of deploy)
 
 Run the deploy_kafka.sh script.
