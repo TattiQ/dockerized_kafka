@@ -57,6 +57,7 @@ num.partitions={{KAFKA_NUM_PARTITIONS}}
 
 # The minimum age of a log file to be eligible for deletion
 log.retention.hours={{KAFKA_LOG_RETENTION_HOURS}}
+log.cleaner.enable={{KAFKA_LOG_CLEANER_ENABLE}}
 
 ############################# Zookeeper #############################
 
