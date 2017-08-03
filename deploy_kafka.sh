@@ -25,4 +25,4 @@ docker run --rm kafka_11 kafka-topics.sh --create --topic pirate_report --replic
 
 docker run --rm kafka_11 kafka-topics.sh --create --topic bundle_queued --replication-factor 1 --partitions 10 --zookeeper $ip:2181 --config cleanup.policy=compact
 
-echo $ip | mail -s "Kafka and zookeeper containers deployed" tatyana.koroleva@veeam.com
+echo $ip | mail -s "Kafka and zookeeper containers deployed" tatyana.koroleva@fakedomain.com
