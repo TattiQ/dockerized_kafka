@@ -4,9 +4,9 @@ Prerequisites: yum update -y and disabled firewalld
 
 Resulting Kafka will be version 0.11.0.0 , scala 2.11 (considered stable at the time of deploy)
 
-Run the deploy_kafka.sh script.
+Make deploy_kafka.sh executable by running chmod +x on it, then run the deploy_kafka.sh script.
 
-Check the Zookeeper and Kafka lister on their ports on the docker host :
+Check that the Zookeeper and Kafka listen on their ports on the docker host :
 ```
 netstat -tulpen | grep 2181
 netstat -tulpen | grep 9092
@@ -23,6 +23,7 @@ Since predefined topics are created with compact cleanup policy during test you 
  docker run --rm --interactive kafka_11 kafka-console-producer.sh --topic bundle_queued --broker-list IP:9092 --property parse.key=true --property key.separator="-"
 ```
 
+where IP is the docker host IP.
 key.separator can be changed.  
 
 The consumer run in a separate console will show the values - 
@@ -30,3 +31,4 @@ The consumer run in a separate console will show the values -
 ```
  docker run --rm kafka_11 kafka-console-consumer.sh --topic bundle_queued --from-beginning --zookeeper IP:2181
 ```
+IP is the docker host IP.
