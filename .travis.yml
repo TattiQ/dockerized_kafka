@@ -4,9 +4,14 @@ python:
 sudo: required
 services:
   - docker
+install:
+  - pip install docker
 before_install:
  - docker run --net=host --name zookeeper -d jplock/zookeeper
  - ZK_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' zookeeper)
  - docker build -t kafka_11 .
  - docker run --net=host --env KAFKA_ADVERTISED_HOST_NAME=$ZK_IP --env ZOOKEEPER_IP=$ZK_IP --env KAFKA_DELETE_TOPIC_ENABLE=true --env KAFKA_AUTO_CREATE_TOPICS_ENABLE=false --name kafka -d kafka_11
+ - docker ps
+ 
+script:
  - docker ps
