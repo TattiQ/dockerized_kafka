@@ -15,5 +15,5 @@ before_install:
  
 script:
  - docker ps
- - netstat -tulpen | grep 2181
- - netstat -tulpen | grep 9092
+ - sudo netstat -tulpen | grep 2181
+ - sudo netstat -tulpen | grep 9092
