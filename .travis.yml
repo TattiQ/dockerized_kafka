@@ -11,9 +11,10 @@ before_install:
  - ZK_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' zookeeper)
  - docker build -t kafka_11 .
  - docker run --net=host --env KAFKA_ADVERTISED_HOST_NAME=$ZK_IP --env ZOOKEEPER_IP=$ZK_IP --env KAFKA_DELETE_TOPIC_ENABLE=true --env KAFKA_AUTO_CREATE_TOPICS_ENABLE=false --name kafka -d kafka_11
- - docker ps
- 
+
 script:
  - docker ps
+ - echo $JAVA_HOME
+ - docker logs -f kafka
  - sudo netstat -tulpen | grep 2181
  - sudo netstat -tulpen | grep 9092
