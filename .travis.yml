@@ -15,6 +15,5 @@ before_install:
 script:
  - docker ps
  - echo $JAVA_HOME
- - docker logs -f kafka
  - sudo netstat -tulpen | grep 2181
  - sudo netstat -tulpen | grep 9092
