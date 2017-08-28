@@ -17,12 +17,12 @@ node("docker") {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("kafka_11")
+        app = docker.build("tattiq/kafka")
     }
 
     stage('Run kafka') {
         
-        docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d') { c ->
+        docker.image('tattiq/kafka').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d') { c ->
             sh 'ls'
         }
     }
