@@ -22,7 +22,9 @@ node("docker") {
 
     stage('Run kafka') {
         
-        docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d')
+        docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d') { c ->
+            sh 'ls'
+        }
     }
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
