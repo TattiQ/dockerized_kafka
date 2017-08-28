@@ -1,4 +1,4 @@
-node("docker") {
+pipeline {
     def app
 
     stage('Clone repository') {
