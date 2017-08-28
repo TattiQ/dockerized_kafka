@@ -1,6 +1,10 @@
 node("docker") {
     def app
-
+        
+    environment {
+    ip='hostname -I | cut -d " " -f1'
+    } 
+    
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -15,9 +19,7 @@ node("docker") {
 
         app = docker.build("kafka_11")
     }
-    environment {
-    ip='hostname -I | cut -d " " -f1'
-    } 
+
     stage('Run kafka') {
         
         docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d')
