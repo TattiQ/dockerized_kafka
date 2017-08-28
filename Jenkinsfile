@@ -40,8 +40,8 @@ node("docker") {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://hub.docker.com/r/tattiq/kafka/', 'a81ee946-40df-4fd2-bb05-97c059d4f417') {
-            app.push("${env.BUILD_ID}")
+        docker.withRegistry('https://hub.docker.com', 'a81ee946-40df-4fd2-bb05-97c059d4f417') {
+            app.push()
         }
     }
 }
