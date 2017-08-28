@@ -5,7 +5,7 @@ node("docker") {
         /* Let's make sure we have the repository cloned to our workspace */
 
         checkout scm
-        docker.image('jplock/zookeeper').withRun('--net=host --name zookeeper -d') { c ->
+        docker.image('jplock/zookeeper').withRun('--net=host --name zookeeper_J -d') { c ->
             sh 'ls'
         }
     }
@@ -20,7 +20,7 @@ node("docker") {
     } 
     stage('Run kafka') {
         
-        docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka -d')
+        docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d')
     }
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
