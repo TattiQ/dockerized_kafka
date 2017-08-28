@@ -10,7 +10,7 @@ node("docker") {
 
         checkout scm
         docker.image('jplock/zookeeper').withRun('--net=host --name zookeeper_J -d') { c ->
-            sh 'ls'
+            sh 'netstat -tulpen | grep 2181'
         }
     }
     stage('Build image') {
@@ -23,7 +23,7 @@ node("docker") {
     stage('Run kafka') {
         
         docker.image('kafka_11').withRun('--net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka_J -d') { c ->
-            sh 'ls'
+            sh 'netstat -tulpen | grep 9092'
         }
     }
     stage('Test image') {
