@@ -1,5 +1,6 @@
 ## Deploy instructions.
 
+For Ubuntu 16.04 
 Resulting Kafka will be version 0.11.0.0 , scala 2.11 (considered stable at the time of deploy)
 
 Make deploy_kafka.sh executable by running chmod +x on it, then run the deploy_kafka.sh script.
