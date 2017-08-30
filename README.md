@@ -15,6 +15,10 @@ Check running containers:
 ```
 docker ps
 ```
+List topics with" 
+```
+sudo docker run --rm --interactive kafka_11 kafka-topics.sh --list --zookeeper IP:2181
+```
 
 Since predefined topics are created with compact cleanup policy during test you need to provide key value pair in producer . Otherwise you will get the message "This message has failed its CRC checksum, exceeds the valid size, or is otherwise corrupt"
 
@@ -30,4 +34,4 @@ The consumer run in a separate console will show the values -
 ```
  docker run --rm kafka_11 kafka-console-consumer.sh --topic bundle_queued --from-beginning --zookeeper IP:2181
 ```
-IP is the docker host IP.
+IP is the docker host IP
