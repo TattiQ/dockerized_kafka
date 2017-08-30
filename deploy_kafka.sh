@@ -1,5 +1,10 @@
 #!/bin/sh
-apt-get install docker git -y
+apt-get install git -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+apt-cache policy docker-ce
+sudo apt-get install -y docker-ce
 rm /etc/docker/daemon.json
 echo '{"bip": "192.168.111.1/24", "insecure-registries": ["supdockerhub:5000"]}' >> /etc/docker/daemon.json
 systemctl start docker
@@ -11,14 +16,14 @@ echo "stopped and rm-ed previous kafka"
 docker stop zookeeper && docker rm zookeeper
 echo "stopped and rm-ed previous zookeeper"
 
-docker run -d -p 2181:2181 --net=host --name zookeeper jplock/zookeeper
+docker run --net=host --name zookeeper -d jplock/zookeeper
 
 cd /tmp && git clone https://github.com/TattiQ/dockerized_kafka.git
 cd dockerized_kafka && docker build -t kafka_11 .
 echo "Getting ip"
 ip=`hostname -I | cut -d " " -f1`
 
-docker run -d -p 9092:9092 --net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka kafka_11
+docker run --net=host --env KAFKA_ADVERTISED_HOST_NAME=$ip --env ZOOKEEPER_IP=$ip --name kafka -d kafka_11
 
 echo "Creating topics"
 sleep 30
