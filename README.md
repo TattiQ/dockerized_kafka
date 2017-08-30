@@ -34,4 +34,4 @@ The consumer run in a separate console will show the values -
 ```
  docker run --rm kafka_11 kafka-console-consumer.sh --topic bundle_queued --from-beginning --zookeeper IP:2181
 ```
-IP is the docker host IP
+IP is the docker host IP (`hostname -I | cut -d " " -f1`)
